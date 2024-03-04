@@ -13,23 +13,24 @@ const Slider = () => {
 
   const totalImages = byDateDesc ? byDateDesc.length : 0;
 
-  const nextCard = () => {
-    setTimeout(
-      () => setIndex(index < byDateDesc.length - 1 ? index + 1 : 0),
-      5000
-    );
-  };
   useEffect(() => {
-    nextCard();
+    const timer = setTimeout(() => {
+      if (byDateDesc) {
+        setIndex(prevIndex => prevIndex < byDateDesc.length - 1 ? prevIndex + 1 : 0);
+      }
+    }, 5000);
+    
+    return () => {
+      clearTimeout(timer);
+    };
   }, [index, totalImages]);
 
   
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <>
+        <div key={event.id}>
           <div
-            key={event.title}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
@@ -53,7 +54,7 @@ const Slider = () => {
               ))}
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );
