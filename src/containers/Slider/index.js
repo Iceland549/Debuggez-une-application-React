@@ -35,7 +35,7 @@ const Slider = () => {
               index === idx ? "display" : "hide"
             }`}
           >
-            <img src={event.cover} alt="forum" />
+            <img src={event.cover} alt="forum" className="SliderCard_image" />
             <div className="SlideCard__descriptionContainer">
               <div className="SlideCard__description">
                 <h3>{event.title}</h3>
@@ -47,9 +47,10 @@ const Slider = () => {
           <div className="SlideCard__paginationContainer">
             <div className="SlideCard__pagination">
             {byDateDesc.map((_, dotIdx) => (
-                <span
-                  key={`${event.id}`}
-                  className={`dot ${index === dotIdx ? "dot_selected" : ""}`}
+              <span
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${event.id}-${idx}-${dotIdx}`}
+              className={`dot ${index === dotIdx ? "dot_selected" : ""}`}
                   />
               ))}
             </div>
