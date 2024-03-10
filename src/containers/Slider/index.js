@@ -29,7 +29,8 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <div key={event.id}>
+        // eslint-disable-next-line react/no-array-index-key
+        <div key={`${event.id}-${idx}`}>
           <div
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
