@@ -11,6 +11,7 @@ const Slider = () => {
     new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
   );
 
+  const totalImages = byDateDesc ? byDateDesc.length : 0;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -22,7 +23,7 @@ const Slider = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [index]);
+  }, [index, totalImages]);
 
   
   return (
